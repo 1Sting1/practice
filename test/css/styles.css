@@ -1,0 +1,172 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.content-wrapper {
+    padding: 20px;
+    background-color: #fff;
+    margin: 20px auto;
+    max-width: 1200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: #f0f0f0;
+    border-radius: 15px;
+}
+
+.inner-container {
+    padding: 20px;
+}
+
+.section-header h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box-content {
+    margin: 20px 0;
+}
+
+.project-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.5;
+    color: #666;
+}
+
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project-item {
+    flex: 0 0 calc(33.333% - 10px); /* Учитывая отступы */
+    margin: 5px; /* Отступы вокруг каждого элемента */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box; /* Включаем отступы в размеры блока */
+}
+
+.project-thumb img {
+    width: 100%;
+    height: auto;
+    border: #f0f0f0;
+    border-radius: 10px;
+}
+
+.project-detail {
+    padding: 10px 0;
+}
+
+.project-detail h2 {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.coordinates {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.coordinates span {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.project-detail div {
+    margin-bottom: 10px;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comments b {
+    font-size: 1em;
+    color: #333;
+}
+
+.media-list {
+    list-style: none;
+    padding: 0;
+}
+
+.media {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.media-body {
+    flex: 1;
+}
+
+.media-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.author {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.rating {
+    color: #ffcc00;
+    margin-right: 5px;
+}
+
+.devide {
+    margin: 0 5px;
+}
+
+.metadata {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.review {
+    font-size: 1em;
+    color: #666;
+}
+
+.chart {
+    margin-top: 20px;
+}
+
+.chart b {
+    font-size: 1em;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.line {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.pipe {
+    background-color: #e0e0e0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 5px 0;
+}
+
+.pipe div {
+    height: 10px;
+    background-color: #ffcc00;
+}

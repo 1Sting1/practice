@@ -1,7 +1,7 @@
-{% extends "index.html" %}
+{% extends "index1.html" %}
 
 {% block content %}
-    {if city_id == 3}
+    {if city_id == 1}
         <div class="row">
             <div class="section-header col-md-12">
                 <h2>{{ attraction.name }}</h2>
@@ -9,15 +9,17 @@
         </div>
         <div class="project-map">
             <script type="text/javascript" charset="utf-8"
-                    async src="{city.map_url}}">
+                    async src="{{city.map_url}}">
             </script>
         </div>
         <div class="box-content">
-            <h2 class="project-title">Общаяя информация</h2>
+            <h2 class="project-title">Общая информация</h2>
             {% for Attraction in Attraction %}
             <p>
                 {if city_id == 1}
-                {{attraction.description}}
+                    {{attraction.description}}
             </p>
+            {% endfor %}
         </div>
+    {% endif %}
 {% endblock %}

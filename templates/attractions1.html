@@ -1,8 +1,8 @@
-{% extends "index.html" %}
+{% extends "index1.html" %}
 
 {% block content %}
 <div class="projects-container">
-    {% if city_id == 3}
+    {% if city_id == 1}
         {% for attraction in attractions %}
         <div class="col-md-4 project-item mix">
             <div class="project-thumb">
@@ -81,5 +81,6 @@
             </div>
         </div>
         {% endfor %}
+    {% endif %}
 </div>
 {% endblock %}

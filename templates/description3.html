@@ -1,7 +1,7 @@
-{% extends "index.html" %}
+{% extends "index3.html" %}
 
 {% block content %}
-    {if city_id == 2}
+    {if city_id == 3}
         <div class="row">
             <div class="section-header col-md-12">
                 <h2>{{ attraction.name }}</h2>
@@ -20,4 +20,5 @@
                 {{attraction.description}}
             </p>
         </div>
+    {% endif %}
 {% endblock %}

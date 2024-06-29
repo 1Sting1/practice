@@ -22,7 +22,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def read_cities(request: Request):
     with Session(engine) as session:
         cities = session.query(City).all()
-        return templates.TemplateResponse("index.html", {"request": request, "cities": cities})
+        return templates.TemplateResponse("index1.html", {"request": request, "cities": cities})
 
 @app.get("/city/{city_id}", response_class=HTMLResponse)
 async def read_city(request: Request, city_id: int):
@@ -100,7 +100,7 @@ def show_attractions(request: Request, city_id: int = None, type_id: int = None,
     cities = db.query(City).all()
     types = db.query(Type).all()
     attractions = crud.get_attractions(db, city_id=city_id, type_id=type_id, search=search)
-    return templates.TemplateResponse("attractions.html", {"request": request, "attractions": attractions, "cities": cities, "types": types, "search": search, "city_id": city_id, "type_id": type_id})
+    return templates.TemplateResponse("attractions1.html", {"request": request, "attractions": attractions, "cities": cities, "types": types, "search": search, "city_id": city_id, "type_id": type_id})
 
 @app.get("/types/add")
 def get_add_type_form(request: Request):
