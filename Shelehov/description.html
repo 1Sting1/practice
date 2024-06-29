@@ -1,0 +1,23 @@
+{% extends "index.html" %}
+
+{% block content %}
+    {if city_id == 3}
+        <div class="row">
+            <div class="section-header col-md-12">
+                <h2>{{ attraction.name }}</h2>
+            </div>
+        </div>
+        <div class="project-map">
+            <script type="text/javascript" charset="utf-8"
+                    async src="{city.map_url}}">
+            </script>
+        </div>
+        <div class="box-content">
+            <h2 class="project-title">Общаяя информация</h2>
+            {% for Attraction in Attraction %}
+            <p>
+                {if city_id == 1}
+                {{attraction.description}}
+            </p>
+        </div>
+{% endblock %}

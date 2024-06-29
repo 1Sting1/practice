@@ -1,0 +1,23 @@
+<!-- templates/city.html -->
+{% extends "base.html" %}
+{% block title %}{{ city.name }}{% endblock %}
+{% block content %}
+    <h2>{{ city.name }}</h2>
+    <p>{{ city.description }}</p>
+    <h3>Attractions</h3>
+    <div class="row">
+    {% for attraction in attractions %}
+        <div class="col-md-4">
+            <div class="card">
+                <img src="{{ url_for('static', path='/uploads/' + attraction.img) }}" alt="{{ attraction.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ attraction.name }}</h5>
+                    <p class="card-text">Type: {{ attraction.type }}</p>
+                    <a href="/attraction/{{ attraction.id }}" class="btn btn-primary">More Info</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}

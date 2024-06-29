@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" />
+<style>
+.dropzone {
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.dropzone .dz-message {
+    color: #58B9FE;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+button.btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.btn:hover {
+    background-color: #45a049;
+}
+</style>
+
+<h2>Add a New Attraction</h2>
+<form action="/attractions/add" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="city_id" class="form-label">City</label>
+        <select class="form-control" id="city_id" name="city_id" required>
+            {% for city in cities %}
+            <option value="{{ city.id }}">{{ city.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Attraction Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="latitude" class="form-label">Latitude</label>
+        <input type="text" class="form-control" id="latitude" name="latitude" required>
+    </div>
+    <div class="mb-3">
+        <label for="longitude" class="form-label">Longitude</label>
+        <input type="text" class="form-control" id="longitude" name="longitude" required>
+    </div>
+    <div class="mb-3">
+        <label for="type_id" class="form-label">Type</label>
+        <select class="form-control" id="type_id" name="type_id" required>
+            {% for type in types %}
+            <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="dropzone">Image Upload</label>
+        <div id="dropzone" class="dropzone"></div>
+        <input type="hidden" id="img" name="img">
+    </div>
+
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/min/dropzone.min.js"></script>
+<script>
+Dropzone.options.dropzone = {
+url: '/upload', // Ensure your server endpoint is correct
+maxFiles: 1,
+acceptedFiles: 'image/*',
+addRemoveLinks: true,
+init: function() {
+    this.on("success", function(file, response) {
+        document.getElementById('img').value = response.path; // Server should return the path
+    });
+}
+};
+function uploadImage() {
+    var fileInput = document.getElementById('image');
+    var formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    axios.post('/upload', formData, {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }).then(function (response) {
+        document.getElementById('image_url').value = response.data.file_url;
+        alert("Image uploaded successfully!");
+    }).catch(function (error) {
+        console.error('Error uploading image:', error);
+        alert("Failed to upload image.");
+    });
+}
+
+
+async function uploadImage() {
+    const fileInput = document.querySelector('input[type="file"]');
+    const formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+
+    try {
+        const response = await fetch('/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            console.log('Image uploaded:', result.file_url);
+            // Сохраните URL в скрытом поле формы или обработайте как нужно
+        } else {
+            throw new Error(result.detail);
+        }
+    } catch (error) {
+        console.error('Upload failed:', error);
+        alert("Failed to upload image: " + error.message);
+    }
+}
+
+document.querySelector('input[type="file"]').addEventListener('change', uploadImage);
+</script>
+{% endblock %}
+
+

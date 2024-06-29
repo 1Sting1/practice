@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" />
+<style>
+.dropzone {
+    border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.dropzone .dz-message {
+    color: #58B9FE;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+button.btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button.btn:hover {
+    background-color: #45a049;
+}
+</style>
+
+<h2>Add a New City</h2>
+<form action="/cities/add" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name" class="form-label">City Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">City Description</label>
+        <input type="text" class="form-control" id="description" name="description" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">City MAP_URL</label>
+        <input type="text" class="form-control" id="map_url" name="map_url" required>
+    </div>
+    <button type="submit" class="btn">Submit</button>
+</form>
+
+
+{% endblock %}
+

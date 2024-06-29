@@ -1,0 +1,85 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div class="projects-container">
+    {% if city_id == 1}
+        {% for attraction in attractions %}
+        <div class="col-md-4 project-item mix">
+            <div class="project-thumb">
+                <img name="category" src="{{ attraction.image_url }}">
+            </div>
+            <div class="box-content project-detail">
+                <h2 name="location">{{ attraction.name }}</h2>
+                <b>Координаты: </b><div class="coordinates"><span name="lattitude">{{ attraction.latitude}}</span><span>, </span><span name="longitude">{{attraction.longitude}}</span></div>
+                <div><span name="count_likes">{{like.value}}</span><span>❤️</span></div>
+                <div class="comments">
+                    <b>Комментарии:</b>
+                    <ul class="media-list">
+                        {% for comment in comment %}
+                        <li class="media">
+                            <div class="media-body">
+                                <div class="media-heading">
+                                    <div class="author"><span class="rating">{{comment.reting}}</span><span>⭐</span><span class="devide">|</span></div>
+                                    <div class="metadata">
+                                        <span class="date">{{comment.date}}</span>
+                                    </div>
+                                </div>
+                                <p class="review">{{comment.text}}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="chart">
+                    <div class="projects-container">
+                        {% if city_id == 2}
+                        <b>Посещаемость: {{ attraction.name }}</b>
+                        <div>
+                            <div class="line">Понедельник</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.monday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Вторник</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.tuesday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Среда</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.wednesday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Четверг</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.thursday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Пятница</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.friday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Суббота</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.saturday }}%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="line">Воскресенье</div>
+                            <div class="pipe line">
+                                <div style="width:{{ attraction.attendance.sunday }}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ attraction.name }}</h2>
+<img src="{{ url_for('static', path='/uploads/' + attraction.img) }}" alt="{{ attraction.name }}">
+<p>{{ attraction.description }}</p>
+<p>Type: {{ attraction.type.name }}</p>
+
+<div class="comments">
+    <h3>Comments</h3>
+    {% for comment in comments %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rating: {{ comment.rating }} / 5</h5>
+            <p class="card-text">{{ comment.comment }}</p>
+            <p class="card-text"><small class="text-muted">Posted on {{ comment.date }}</small></p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

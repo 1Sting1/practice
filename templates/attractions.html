@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Attractions</h2>
+<form method="get" action="/attractions">
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" name="search" placeholder="Search for attractions" value="{{request.query_params['search'] if 'search' in request.query_params else ''}}">
+        </div>
+        <div class="col">
+            <select class="form-control" name="city_id">
+                <option value="">Choose a city</option>
+                {% for city in cities %}
+                <option value="{{ city.id }}" {% if 'city_id' in request.query_params and city.id == int(request.query_params['city_id']) %}selected{% endif %}>{{ city.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control" name="type_id">
+                <option value="">Choose a type</option>
+                {% for type in types %}
+                <option value="{{ type.id }}" {% if 'type_id' in request.query_params and type.id == int(request.query_params['type_id']) %}selected{% endif %}>{{ type.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+
+<div class="list-group mt-3">
+    {% for attraction in attractions %}
+    <a href="/attractions/{{ attraction.id }}" class="list-group-item list-group-item-action">
+        {{ attraction.name }} ({{ attraction.city.name }} - {{ attraction.type.name }})
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

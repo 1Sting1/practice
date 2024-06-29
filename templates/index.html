@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cities</h1>
+{% for city in cities %}
+<div>
+    <h2>{{ city.name }}</h2>
+    {% if city.image_url %}
+    <img src="{{ url_for('static', path=city.image_url) }}" alt="Image of {{ city.name }}">
+    {% endif %}
+    <p>{{ city.description }}</p>
+</div>
+{% endfor %}
+{% endblock %}
